@@ -13,57 +13,54 @@ ADT Stack:
 > 栈大多的实现是采用线性表
 
 ### 顺序表栈实现
-
 1. 定义一个异常类
 
-
-	```python
-	class StackUnderflow(ValueError): # 栈下溢(空栈访问)
-	    pass
-	```
+```python
+class StackUnderflow(ValueError): # 栈下溢(空栈访问)
+    pass
+```
 
 2. `Python` 的 list 是线性表的一种实现，在此使用 list 作为栈元素存储区，整体实现如下：
 
+```python
+class SStack:
+    def __init__(self):
+        self._elems = [] # 使用list存储栈元素
 
-	```python
-	class SStack:
-	    def __init__(self):
-	        self._elems = [] # 使用list存储栈元素
-	
-	    def is_empty(self):
-	        return self._elems == []
-	
-	    def push(self, elem):
-	        self._elems.append(elem)
-	
-	    def pop(self):
-	        if self._elems == []:
-	            raise StackUnderflow("in SStack.pop()")
-	        return self._elems.pop()
-	
-	    def top(self):
-	        if self._elems == []:
-	            raise StackUnderflow("in SStack.top()")
-	        return self._elems[-1]
-	
-	```
+    def is_empty(self):
+        return self._elems == []
+
+    def push(self, elem):
+        self._elems.append(elem)
+
+    def pop(self):
+        if self._elems == []:
+            raise StackUnderflow("in SStack.pop()")
+        return self._elems.pop()
+
+    def top(self):
+        if self._elems == []:
+            raise StackUnderflow("in SStack.top()")
+        return self._elems[-1]
+
+```
 
 3. 简单的书写测试用例
 
-	```python
-	
-	if __name__ == '__main__':
-	    s = SStack()
-	    assert s.is_empty() is True
-	    try:
-	        s.pop()
-	    except StackUnderflow:
-	        print("StackUnderflow")
-	    s.push(123)
-	    assert s.is_empty() is not True
-	    assert s.pop() == 123
-	
-	```
+```python
+
+if __name__ == '__main__':
+    s = SStack()
+    assert s.is_empty() is True
+    try:
+        s.pop()
+    except StackUnderflow:
+        print("StackUnderflow")
+    s.push(123)
+    assert s.is_empty() is not True
+    assert s.pop() == 123
+
+```
 
 ### 简单应用：括号匹配问题
 
@@ -72,7 +69,6 @@ ADT Stack:
 
 
 **完整的括号匹配算法流程如下：**
-
 1. 从前向后扫描字符串，遇到无关字符则跳过；
 2. 遇到左括号 x，就把 x 压栈；
 3. 遇到右括号 y:
@@ -80,6 +76,36 @@ ADT Stack:
     * 如果栈顶元素x和该括号y不匹配，字符串不匹配；
     * 如果栈为空，字符串不匹配；
 4. 扫描完成后，如果栈恰好为空，则字符串匹配，否则，字符串不匹配。
+
+代码如下：
+
+```python
+
+def check_parens(text):
+    stack = SStack()
+    left_parens = "([{"
+    right_parens = ")]}"
+    parens = {")":"(", "]":"[", "}":"{"}
+    for i in text:
+        if i in left_parens:
+            stack.push(i)
+        elif i in right_parens:
+            if stack.is_empty():
+                return False
+            if parens[i] != stack.pop():
+                return False
+    if stack.is_empty():
+        return True
+    return False
+
+if __name__ == '__main__':
+    assert check_parens("[{1232}]") is True
+    assert check_parens("[{[}]") is False
+    assert check_parens("[{123444]}]") is False
+    assert check_parens("][{}]") is False
+
+```
+
 
 
 
