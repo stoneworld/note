@@ -107,5 +107,26 @@ if __name__ == '__main__':
 ```
 
 
+### 栈与函数调用经典问题之简单背包问题
+
+![简单背包问题](assets/knap_rec.png)
+
+递归实现如下：
+
+```
+# 简单背包问题
+def knap_rec(weight, wlist, n):
+    if weight == 0:
+        return True
+    if weight < 0 or (weight > 0 and n < 1):
+        return False
+    if knap_rec(weight - wlist[n-1], wlist, n-1):
+        return True
+    if knap_rec(weight, wlist, n-1):
+        return True
+    else:
+        return False
+
+```
 
 
