@@ -81,7 +81,7 @@ sed '2s/dog/cat/' test.txt #第二行
 sed '2,3s/dog/cat/' test.txt #行地址区间
 sed '2,$s/dog/cat/' test.txt # 从某行开始的所有行，使用 $ 符号标记
 
-```
+``` 
 
 文本模式过滤
 
@@ -97,14 +97,13 @@ sed '/wang/s/bash/csh/' /etc/passwd  # 前面的 wang 说明只处理匹配到�
 
 ```shell
 sed '2d' test.txt
-
-sed '/number 1/d' test.txt #删除匹配到 number 的第一行
 ```
 
-### 插入和附件文本
+### 插入和附件文本以及修改行
 
 * 插入 (insert) 命令 i 会在指定行前增加一个新行
 * 附件 (append) 命令 a 会在指定行后增加一个新行
+* 修改 (change) 命令 c 配合寻址修改行
 
 > sed '[address]command\ new line'
 
@@ -125,7 +124,17 @@ the quick brown fox2
 
 sed '$a\this is new line.' test.txt  # $ 代表最后一行
 
+sed '2c\this is new line.' test.txt
+
 ```
 
-### 修改行
+### 转化命令 y
 
+```shell
+
+sed 'y/123/789/' test.txt
+
+the quick brown fox
+the quick brown fox7
+the quick brown fox8
+```
