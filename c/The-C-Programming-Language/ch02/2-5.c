@@ -1,6 +1,3 @@
-/**
- */
-
 #include <stdio.h>
 
 void strcat_(char s[], char t[]);
