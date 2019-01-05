@@ -1,20 +1,12 @@
 /**计算器程序 (逆波兰表示法)
- * while (下一个运算符或操作数不是文件结束指示符)
- *      if (是数)
- *          压入栈中
- *      else if (是运算符)
- *          弹出所需数目的操作数
- *          执行计算
- *          将计算结果压入到栈中
- *      else if(是换行符)
- *          弹出并打印栈顶的值
- *      else
- *          出错
- * 1 2 - 4 5 + *
+ * 4-3 增加取模运算符 注意考虑负数的情况
+ * -1 2 - 4 5 + *
  */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+
 #define MAXOP 100
 #define NUMBER '0'
 
@@ -55,6 +47,13 @@ int main()
             {
                 printf("error: zero divisor\n");
             }
+            break;
+        case '%':
+            op2 = pop();
+            if(op2 != 0.0)
+                push(fmod(pop(),op2));
+            else
+                printf("erro:zero divisor\n");
             break;
         case '\n':
             printf("\t%.8g\n", pop());
@@ -109,11 +108,20 @@ int getop(char s[])
         ;
     }
     s[1] = '\0';
-    if (!isdigit(c) && c != '.')
+    i = 0;
+    if (!isdigit(c) && c != '.' && c != '-')
     {
         return c;
     }
-    i = 0;
+    if (c == '-') {
+        if(isdigit(c=getch()) || c == '.') {
+            s[++i]=c;
+        } else {
+            if (c!=EOF)
+                ungetch(c);
+            return '-';
+        }
+    }
     if (isdigit(c))
     {
         while (isdigit(s[++i] = c = getch()))
