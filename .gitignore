@@ -10,3 +10,6 @@ Homestead.yaml
 npm-debug.log
 .env
 worker.log
+c/cmake-build-debug
+c/CMakeLists.txt
+c/.idea
