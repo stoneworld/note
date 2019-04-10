@@ -1,0 +1,30 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ALLOCSIZE	alloc.c	/^#define ALLOCSIZE /;"	d	file:
+ALLOCSIZE	my_sort.c	/^#define ALLOCSIZE /;"	d	file:
+MAXLINE	mystrcat.c	/^#define MAXLINE /;"	d	file:
+MAXLINES	my_sort.c	/^#define MAXLINES /;"	d	file:
+afree	alloc.c	/^void afree(char *p) {$/;"	f
+alloc	alloc.c	/^char *alloc(int n) { \/* return pointer to n characters *\/$/;"	f
+alloc	my_sort.c	/^char *alloc(int n) { \/* return pointer to n characters *\/$/;"	f
+allocbuf	alloc.c	/^static char allocbuf[ALLOCSIZE];$/;"	v	file:
+allocbuf	my_sort.c	/^static char allocbuf[ALLOCSIZE];$/;"	v	file:
+allocp	alloc.c	/^static char *allocp = allocbuf; \/* next free position *\/$/;"	v	file:
+allocp	my_sort.c	/^static char *allocp = allocbuf; \/* next free position *\/$/;"	v	file:
+lineptr	my_sort.c	/^char *lineptr[MAXLINES]; \/* pointers to text lines *\/$/;"	v
+main	alloc.c	/^int main() {$/;"	f
+main	my_sort.c	/^int main() {$/;"	f
+main	mystrcat.c	/^int main(void) {$/;"	f
+mgetline	my_sort.c	/^int mgetline(char s[], int lim) {$/;"	f
+mgetline	mystrcat.c	/^int mgetline(char s[], int lim) {$/;"	f
+my_strcat	mystrcat.c	/^void my_strcat(char *s, char *t) {$/;"	f
+my_strend	mystrcat.c	/^int my_strend(char *s, char *t) {$/;"	f
+my_strlen	mystrcat.c	/^int my_strlen(char *t) {$/;"	f
+qsort	my_sort.c	/^void qsort(char *v[], int left, int right) {$/;"	f
+readLines	my_sort.c	/^int readLines(char *lineptr[], int maxlines) {$/;"	f
+swap	my_sort.c	/^void swap(char *v[], int i, int j) {$/;"	f
+writeLines	my_sort.c	/^void writeLines(char *lineptr[], int nlines) {$/;"	f

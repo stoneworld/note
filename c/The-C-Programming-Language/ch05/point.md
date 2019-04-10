@@ -21,7 +21,6 @@
 1. 字符串常量是一个字符数组，例如 "I am a string", 
 printf("hello world\n") 示例中 printf 接受的是一个指向字符数组的第一个字符的指针，
 也就是说，字符串常量可通过一个指向其第一个元素的指针访问。
-2. 数组 && 字符指针
 ```
     char amessage[] = "now is the time";
     char sme = amessage;
